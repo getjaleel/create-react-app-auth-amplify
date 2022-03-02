@@ -31,7 +31,7 @@ const AuthStateApp = () => {
                 height: '100vh'
           }}
 
-          headerText="We have sent an email to your email.Please check your email, follow the instructions to verify your email address before Signing In"
+          headerText="Your request for registration has been forwarded to Administrator and this should get processed shortly"
 
           slot="sign-in"
 
