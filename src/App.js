@@ -1,33 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+//Start React code
+import React from 'react';
 import './App.css';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports';
-Amplify.configure(aws_exports);
+import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import awsconfig from './aws-exports';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <AmplifySignOut />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+Amplify.configure(awsconfig);
+
+const AuthStateApp = () => {
+    const [authState, setAuthState] = React.useState();
+    const [user, setUser] = React.useState();
+
+    React.useEffect(() => {
+        onAuthUIStateChange((nextAuthState, authData) => {
+          console.log(nextAuthState);
+          console.log(authData);
+            setAuthState(nextAuthState);
+            setUser(authData)
+        });
+    }, []);
+
+
+      if (authState === "confirmSignUp" ) {
+          return   <AmplifySignIn style={{ 
+            display: 'flex',
+            justifyContent: 'center',
+                alignItems: 'center',
+                flex: 1,
+                height: '100vh'
+          }}
+
+          headerText="We have sent an email to your email.Please check your email, follow the instructions to verify your email address before Signing In"
+
+          slot="sign-in"
+
+        ></AmplifySignIn>
+
+    } else if(authState === AuthState.SignedIn && user) {
+    return  <div className="App">
+          <div>Hello, {user.username}</div>
+          <AmplifySignOut />
       </div>
-    );
-  }
+    }else{
+      return  <AmplifyAuthenticator />
+    }
 }
 
-export default withAuthenticator(App);
+export default AuthStateApp;
+
+//End React code
