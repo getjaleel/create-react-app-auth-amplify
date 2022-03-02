@@ -31,7 +31,7 @@ const AuthStateApp = () => {
                 height: '100vh'
           }}
 
-          headerText="Your request for registration has been forwarded to Administrator and this should get processed shortly"
+          headerText="Your request is awaiting administratori'ss approval.Once approved,you will recieve a notification email."
 
           slot="sign-in"
 
