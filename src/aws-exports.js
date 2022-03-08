@@ -3,15 +3,12 @@
 
 const awsmobile = {
     "aws_project_region": "ap-southeast-2",
-    "aws_cognito_identity_pool_id": "ap-southeast-2:b46743e2-f9fb-441c-a5f6-c7f5a5bf41d1",
+    "aws_cognito_identity_pool_id": "ap-southeast-2:89307c6c-24d1-49d6-ab79-4cbdd9854716",
     "aws_cognito_region": "ap-southeast-2",
-    "aws_user_pools_id": "ap-southeast-2_oEr2C3bPk",
-    "aws_user_pools_web_client_id": "6v1m1a9vc7f78c1n7llsbhhe7i",
+    "aws_user_pools_id": "ap-southeast-2_4JnyognOd",
+    "aws_user_pools_web_client_id": "1693f2okdd67275k9hp3f8irr6",
     "oauth": {},
-    "aws_cognito_username_attributes": [
-        "EMAIL",
-        "PHONE_NUMBER"
-    ],
+    "aws_cognito_username_attributes": [],
     "aws_cognito_social_providers": [],
     "aws_cognito_signup_attributes": [
         "EMAIL"
@@ -22,13 +19,28 @@ const awsmobile = {
     ],
     "aws_cognito_password_protection_settings": {
         "passwordPolicyMinLength": 8,
-        "passwordPolicyCharacters": []
+        "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS"
+        ]
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
-    ]
+    ],
+    "aws_dynamodb_all_tables_region": "ap-southeast-2",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "cognito_test",
+            "region": "ap-southeast-2"
+        }
+    ],
+    "aws_appsync_graphqlEndpoint": "https://jkzevqbw25f2vo63l5tk2smzda.appsync-api.ap-southeast-2.amazonaws.com/graphql",
+    "aws_appsync_region": "ap-southeast-2",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "da2-apsy2gvo6nduhdqtrdkbtb66nm"
 };
 
 
 export default awsmobile;
-
