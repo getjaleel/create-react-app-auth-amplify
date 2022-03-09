@@ -5,9 +5,9 @@ import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from './aws-exports';
-import * as queries from './graphql/queries';
-import * as mutations from './graphql/mutations';
-import * as subscriptions from './graphql/subscriptions';
+// import * as queries from './graphql/queries';
+// import * as mutations from './graphql/mutations';
+// import * as subscriptions from './graphql/subscriptions';
 
 
 
@@ -28,8 +28,8 @@ const AuthStateApp = () => {
 
 
 // Simple query
-const allTodos = await API.graphql({ query: queries.listTodos });
-console.log(allTodos); // result: { "data": { "listTodos": { "items": [/* ..... */] } } }    
+// const allTodos = await API.graphql({ query: queries.listTodos });
+// console.log(allTodos); // result: { "data": { "listTodos": { "items": [/* ..... */] } } }    
 
 
 
