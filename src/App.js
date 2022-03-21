@@ -1,10 +1,10 @@
 //Start React code
 import React from 'react';
-import './App.css';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from './aws-exports';
+import './App.css';
 
 Amplify.configure(awsconfig);
 
@@ -16,35 +16,42 @@ const AuthStateApp = () => {
         onAuthUIStateChange((nextAuthState, authData) => {
           console.log(nextAuthState);
           console.log(authData);
-            setAuthState(nextAuthState);
-            setUser(authData)
+          setAuthState(nextAuthState);
+          setUser(authData)
         });
     }, []);
 
+    let pageContents = <AmplifyAuthenticator />
 
-      if (authState === "confirmSignUp" ) {
-          return   <AmplifySignIn style={{ 
-            display: 'flex',
-            justifyContent: 'center',
-                alignItems: 'center',
-                flex: 1,
-                height: '100vh'
-          }}
-
-          headerText="Your request is awaiting administrator's approval."
-
-          slot="sign-in"
-
-        ></AmplifySignIn>
-
-    } else if(authState === AuthState.SignedIn && user) {
-    return  <div className="App">
-          <div>Hello, {user.username}</div>
+    if (authState === "confirmSignUp" ) {
+      pageContents = (<AmplifySignIn 
+        style={{ 
+        display: 'flex',
+        justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
+            height: '100vh'
+      }}
+      headerText="Your request is awaiting administrator's approval."
+      slot="sign-in"/>)
+    } else if (authState === AuthState.SignedIn && user) {
+      pageContents = (
+        <div className="App">
+          <div>User Id: {user.username}</div>
+          <p>Phone: {user.attributes.phone_number}</p>
+          <p>Email: {user.attributes.email}</p>
           <AmplifySignOut />
-      </div>
-    }else{
-      return  <AmplifyAuthenticator />
+        </div>
+      )
     }
+
+  return (
+    <div>
+      <img src="/banner.svg" alt="Banner" style={{width: '100%'}}/>
+      <img src="/Logo.png" alt="Logo" style={{marginBottom: '20px'}}/>
+      {pageContents}
+    </div>
+  )
 }
 
 export default AuthStateApp;
