@@ -31,7 +31,7 @@ const AuthStateApp = () => {
                 height: '100vh'
           }}
 
-          headerText="Your request is awaiting administratori'ss approval.Once approved,you will recieve a notification email."
+          headerText="Your request is awaiting administrator's approval.You will be notified through email"
 
           slot="sign-in"
 
